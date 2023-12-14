@@ -1,23 +1,34 @@
 
 package kdelectronics;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class clientes {
+
+    static int obtenerSiguienteId(Connection conexion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     //Creacion atributos
     private int idclientes;
     private String nombrecliente;
     private String direccion;
     private String correo;
-    private int telefono;
+    private String telefono;
 
     //Constructor
-    public clientes(int idclientes, String nombrecliente, String direccion, String correo, int telefono) {
+    public clientes(int idclientes, String nombrecliente, String direccion, String correo, String telefono) {
         this.idclientes = idclientes;
         this.nombrecliente = nombrecliente;
         this.direccion = direccion;
         this.correo = correo;
         this.telefono = telefono;
     }
+
+    clientes() {
+            }
 
     //Los Getters and Setter son métodos especiales que nos permiten traer los valores de cada uno de los atributos que se tienen dentro de una clase
     public int getIdclientes() {
@@ -52,11 +63,31 @@ public class clientes {
         this.correo = correo;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+    @Override
+     public String toString() {
+        return "Cliente ID: " + idclientes + ", Nombre: " + nombrecliente + ", Dirección: " + direccion
+                + ", Correo: " + correo + ", Teléfono: " + telefono;
+    }
 }
+
+/*public static int obtenerSiguienteId(Connection conexion) throws SQLException {
+        String sql = "SELECT MAX(idclientes) FROM clientes";
+        try (PreparedStatement pstmt = conexion.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            int ultimoId = 0;
+            if (rs.next()) {
+                ultimoId = rs.getInt(1);
+            }
+
+            return ultimoId + 1;
+        }
+    }
+}*/
